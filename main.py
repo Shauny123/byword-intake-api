@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request
 import openai
 import os
-import uvicorn
 
 app = FastAPI()
 
@@ -23,9 +22,11 @@ async def chat_with_gpt(request: Request):
 
     return {"reply": response['choices'][0]['message']['content']}
 
-
+# ✅ Local and Cloud Run fallback logic
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))  # Cloud Run requires PORT
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))  # 8000 local, 8080 on Cloud Run
     uvicorn.run("main:app", host="0.0.0.0", port=port)
+
 
 
