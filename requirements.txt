@@ -5,3 +5,7 @@ pydantic
 sentence-transformers
 faiss-cpu
 openai
+requests
+python-dotenv           # For .env file loading
+aiofiles                # If you serve file uploads
+jinja2                  # If you render HTML templates
